@@ -41,8 +41,9 @@ function TextExpander({
   expandButtonText = "Show more",
   collapseButtonText = "Show less",
   buttonColor,
+  expanded = false,
 }) {
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(expanded);
 
   const splitText =
     children.split(" ").slice(0, collapsedNumWords).join(" ") + "...";
