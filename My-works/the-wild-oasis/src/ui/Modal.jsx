@@ -56,7 +56,7 @@ const Button = styled.button`
   }
 `;
 
-const ModelContext = createContext();
+const ModalContext = createContext();
 
 function Modal({ children }) {
   const [openName, setOpenName] = useState("");
@@ -65,20 +65,20 @@ function Modal({ children }) {
   const open = setOpenName;
 
   return (
-    <ModelContext.Provider value={{ openName, open, close }}>
+    <ModalContext.Provider value={{ openName, open, close }}>
       {children}
-    </ModelContext.Provider>
+    </ModalContext.Provider>
   );
 }
 
 function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModelContext);
+  const { open } = useContext(ModalContext);
 
   return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 function Window({ children, name }) {
-  const { openName, close } = useContext(ModelContext);
+  const { openName, close } = useContext(ModalContext);
 
   const ref = useOutsideClick(() => close());
 
